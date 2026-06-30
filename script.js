@@ -509,24 +509,56 @@ function initNewsletter(){
   });
 }
 
-function initLoafOptions(){
-  var container = document.querySelector('.loaf-options');
+var heroProducts = [
+  {
+    title: "Classic Sourdough",
+    desc: "Our flagship loaf is a wild-yeast starter fed daily, fermented cold for 48 hours so the crumb stays open and lightly tangy. These golden loaves are traditionally baked in a wood-fired hearth oven, creating a perfect harmony of crisp crust and soft interior. A true staple for bread lovers.",
+    price: "IDR 48.000 / loaf",
+    img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80"
+  },
+  {
+    title: "Artisan Milk Bread",
+    desc: "Incredibly soft and fluffy, our Japanese-style milk bread is enriched with premium butter and fresh milk. It pulls apart in delicate layers and toasts beautifully. Perfect for your morning jam or a decadent sandwich.",
+    price: "IDR 42.000 / loaf",
+    img: "https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=800&q=80"
+  },
+  {
+    title: "Rustic Baguette",
+    desc: "Crispy on the outside, airy and chewy on the inside. Baked directly on the stone hearth to achieve that signature golden crust. A classic French staple that pairs wonderfully with aged cheese or a warm bowl of soup.",
+    price: "IDR 28.000 / loaf",
+    img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&q=80"
+  }
+];
+
+function changeHero(index, el) {
+  var p = heroProducts[index];
+  
+  var imgEl = document.getElementById('hero-main-img');
+  imgEl.style.opacity = '0.5';
+  
+  setTimeout(function() {
+    imgEl.src = p.img;
+    document.getElementById('hero-main-title').innerText = p.title;
+    document.getElementById('hero-main-desc').innerText = p.desc;
+    document.getElementById('hero-main-price').innerText = p.price;
+    imgEl.style.opacity = '1';
+  }, 150);
+
+  var thumbs = document.querySelectorAll('.hero-thumb');
+  thumbs.forEach(function(t) {
+    t.style.opacity = '0.6';
+    t.style.borderColor = 'transparent';
+  });
+  el.style.opacity = '1';
+  el.style.borderColor = 'var(--crust)';
+}
+
+function selectLoaf(clickedBtn) {
+  var container = clickedBtn.closest('.loaf-options');
   if(!container) return;
   var btns = container.querySelectorAll('button');
-  btns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      btns.forEach(function(b){
-        b.classList.remove('active');
-        b.style.background = 'transparent';
-        b.style.color = 'var(--crust)';
-        b.style.borderColor = 'var(--line)';
-      });
-      btn.classList.add('active');
-      btn.style.background = 'rgba(209,117,79,0.1)';
-      btn.style.color = '#d1754f';
-      btn.style.borderColor = '#d1754f';
-    });
-  });
+  btns.forEach(function(b){ b.classList.remove('active'); });
+  clickedBtn.classList.add('active');
 }
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -538,7 +570,6 @@ document.addEventListener('DOMContentLoaded', function(){
   initContactForm();
   initNewsletter();
   initMap();
-  initLoafOptions();
 
   document.querySelectorAll('[data-wheat-mark]').forEach(function(el){
     el.innerHTML = wheatMarkSVG(el.dataset.wheatMark || 22);

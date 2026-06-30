@@ -331,6 +331,14 @@ h1,h2,h3,h4{
 @media (max-width: 900px){
   .hero{ grid-template-columns:1fr; }
   .hero-art{ order:-1; }
+  .hero-copy {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero h1 { margin-top: 0; }
+  .hero p.lead { margin-top: 15px; }
 }
 
 section{ padding-top:clamp(56px, 8vw, 100px); padding-bottom:clamp(56px, 8vw, 100px); }
@@ -1073,6 +1081,37 @@ footer{
   gap: 80px;
 }
 
+.highlight-art {
+  position: relative;
+  display: flex;
+}
+
+.highlight-thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-right: 20px;
+  z-index: 2;
+}
+
+.loaf-options button {
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--crust);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--body);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.loaf-options button.active {
+  border-color: #d1754f;
+  color: #d1754f;
+  background: rgba(209,117,79,0.1);
+}
+
 .baker-card {
   position: absolute; 
   bottom: -30px; 
@@ -1122,6 +1161,15 @@ footer{
   .hero-grid, .split-grid, .editorial-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  .highlight-art {
+    flex-direction: column-reverse !important;
+    align-items: center;
+    gap: 20px;
+  }
+  .highlight-thumbnails {
+    flex-direction: row !important;
+    margin-right: 0 !important;
   }
   .baker-card {
     right: 20px;

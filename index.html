@@ -32,7 +32,7 @@
 <main>
     <section class="hero wrap relative">
     <div class="hero-copy">
-      <h1>The Soul of Bakery,<br>Baked to Perfection.</h1>
+      <h1>The Soul of Bakery, Baked to Perfection.</h1>
       <p class="lead" style="max-width: 40ch;">Artisanal hearth bread crafted with wild yeast, local wheat, and passion.</p>
       <div class="hero-actions" style="margin-top: 30px;">
         <a href="product.html" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 30px;">Bake Menu</a>
@@ -40,7 +40,7 @@
     </div>
     <div class="hero-art" style="position: relative; display: flex; justify-content: flex-end;">
       <div class="pattern-bg" style="position:absolute; top: -50px; right: -50px; width: 400px; height: 400px; background-image: url('data:image/svg+xml;utf8,<svg width=\'20\' height=\'20\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'2\' cy=\'2\' r=\'2\' fill=\'%23E2D7C1\'/></svg>'); z-index: -1;"></div>
-      <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?w=800&q=80" alt="Bread platter" style="width: 100%; max-width: 450px; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 15px solid rgba(255,255,255,0.3);">
+      <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=800&q=80" alt="Bread platter" style="width: 100%; max-width: 450px; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 15px solid rgba(255,255,255,0.3);">
     </div>
   </section>
 
@@ -69,22 +69,22 @@
 
     <section class="wrap" style="padding-top: 80px; padding-bottom: 80px;">
     <div class="hero-grid">
-      <div class="highlight-art" style="position: relative; display: flex;">
-        <div style="display: flex; flex-direction: column; gap: 15px; margin-right: 20px; z-index: 2;">
-           <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--crust); object-fit: cover;">
-           <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=100&q=80" style="width: 60px; height: 60px; border-radius: 50%; opacity: 0.6; object-fit: cover;">
-           <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=100&q=80" style="width: 60px; height: 60px; border-radius: 50%; opacity: 0.6; object-fit: cover;">
+      <div class="highlight-art">
+        <div class="highlight-thumbnails">
+           <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80" onclick="changeHero(0, this)" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--crust); object-fit: cover; cursor: pointer;" class="hero-thumb">
+           <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=100&q=80" onclick="changeHero(1, this)" style="width: 60px; height: 60px; border-radius: 50%; opacity: 0.6; object-fit: cover; border: 2px solid transparent; cursor: pointer;" class="hero-thumb">
+           <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=100&q=80" onclick="changeHero(2, this)" style="width: 60px; height: 60px; border-radius: 50%; opacity: 0.6; object-fit: cover; border: 2px solid transparent; cursor: pointer;" class="hero-thumb">
         </div>
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80" alt="Classic Sourdough" style="width: 100%; border-radius: 20px; object-fit: cover;">
+        <img id="hero-main-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80" alt="Classic Sourdough" style="flex: 1; min-width: 0; width: 100%; border-radius: 20px; object-fit: cover; transition: opacity 0.3s ease;">
       </div>
       <div class="highlight-info">
-        <h2 style="font-size: 36px; color: var(--crust-dark);">Classic Sourdough</h2>
-        <p style="margin-top: 15px; color: var(--crust); line-height: 1.6;">Our flagship loaf is a wild-yeast starter fed daily, fermented cold for 48 hours so the crumb stays open and lightly tangy. These golden loaves are traditionally baked in a wood-fired hearth oven, creating a perfect harmony of crisp crust and soft interior. A true staple for bread lovers.</p>
-        <p style="margin-top: 20px; font-size: 20px; font-weight: 600; color: #d1754f;">IDR 48.000 / loaf</p>
+        <h2 id="hero-main-title" style="font-size: 36px; color: var(--crust-dark);">Classic Sourdough</h2>
+        <p id="hero-main-desc" style="margin-top: 15px; color: var(--crust); line-height: 1.6;">Our flagship loaf is a wild-yeast starter fed daily, fermented cold for 48 hours so the crumb stays open and lightly tangy. These golden loaves are traditionally baked in a wood-fired hearth oven, creating a perfect harmony of crisp crust and soft interior. A true staple for bread lovers.</p>
+        <p id="hero-main-price" style="margin-top: 20px; font-size: 20px; font-weight: 600; color: #d1754f;">IDR 48.000 / loaf</p>
         <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;" class="loaf-options">
-          <button style="padding: 8px 16px; border: 1px solid #d1754f; border-radius: 20px; color: #d1754f; background: rgba(209,117,79,0.1); cursor:pointer; font-family: var(--body); font-weight: 500;" class="active">1 Loaf</button>
-          <button style="padding: 8px 16px; border: 1px solid var(--line); border-radius: 20px; color: var(--crust); background: transparent; cursor:pointer; font-family: var(--body); font-weight: 500;">2 Loaves</button>
-          <button style="padding: 8px 16px; border: 1px solid var(--line); border-radius: 20px; color: var(--crust); background: transparent; cursor:pointer; font-family: var(--body); font-weight: 500;">3 Loaves</button>
+          <button class="active" onclick="selectLoaf(this)">1 Loaf</button>
+          <button onclick="selectLoaf(this)">2 Loaves</button>
+          <button onclick="selectLoaf(this)">3 Loaves</button>
         </div>
         <div style="margin-top: 20px; display: flex; align-items: center; gap: 20px;">
           <div class="qty-selector" style="display: flex; align-items: center; border: 1px solid var(--line); border-radius: 30px; padding: 5px 15px;">
