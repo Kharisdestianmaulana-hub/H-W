@@ -405,6 +405,8 @@ function renderProductDetail(){
   }
 
   document.title = product.name + ' — Hearth & Wheat';
+  var breadcrumb = document.querySelector('[data-breadcrumb-name]');
+  if(breadcrumb) breadcrumb.textContent = product.name;
 
   var qty = 1;
   var qtyEl = document.querySelector('[data-qty]');
@@ -507,6 +509,26 @@ function initNewsletter(){
   });
 }
 
+function initLoafOptions(){
+  var container = document.querySelector('.loaf-options');
+  if(!container) return;
+  var btns = container.querySelectorAll('button');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){
+        b.classList.remove('active');
+        b.style.background = 'transparent';
+        b.style.color = 'var(--crust)';
+        b.style.borderColor = 'var(--line)';
+      });
+      btn.classList.add('active');
+      btn.style.background = 'rgba(209,117,79,0.1)';
+      btn.style.color = '#d1754f';
+      btn.style.borderColor = '#d1754f';
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function(){
   renderFeatured();
   renderSignatureCollections();
@@ -516,6 +538,7 @@ document.addEventListener('DOMContentLoaded', function(){
   initContactForm();
   initNewsletter();
   initMap();
+  initLoafOptions();
 
   document.querySelectorAll('[data-wheat-mark]').forEach(function(el){
     el.innerHTML = wheatMarkSVG(el.dataset.wheatMark || 22);

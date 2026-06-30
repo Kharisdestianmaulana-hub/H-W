@@ -10,11 +10,6 @@
 </head><body class="bg-pattern">
 
 <header class="site-header">
-  <div class="header-top">
-    <div class="wrap">
-      <p>Jl. Wheatfield No. 12, Cirebon &nbsp;|&nbsp; +62 812-3456-7890</p>
-    </div>
-  </div>
   <nav class="nav wrap split-nav">
     <div class="nav-menu">
       <ul class="nav-links nav-left">
@@ -35,7 +30,7 @@
 </header>
 
 <main>
-    <section class="wrap" style="padding-top: 40px; padding-bottom: 0;">
+    <section class="wrap" style="padding-top: 60px; padding-bottom: 0;">
     <div class="contact-hero-art">
       <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=80" alt="Bakery Cafe" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
@@ -115,30 +110,31 @@
   </svg>
 </main>
 
-<footer style="background-color: var(--walnut); padding-top: 40px; padding-bottom: 40px;">
+<footer>
   <div class="wrap">
     <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
       <div>
         <h3 style="color: var(--cream); font-size: 28px; margin-bottom: 10px;">Subscribe to Newsletter</h3>
       </div>
-      <form data-newsletter-form style="display: flex; gap: 10px;">
-        <input type="email" placeholder="Email Address..." required aria-label="Email address" style="padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white; width: 300px;">
-        <button type="submit" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px; background: #dcb38a; color: var(--walnut);">Subscribe</button>
+      <form data-newsletter-form style="display: flex; gap: 10px; width: 100%; max-width: 400px; flex-wrap: wrap;">
+        <input type="email" placeholder="Email Address..." required aria-label="Email address" style="flex: 1; min-width: 200px; padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+        <button type="submit" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px; background: #dcb38a; color: var(--walnut); white-space: nowrap;" onclick="event.preventDefault(); alert('Subscribed!')">Subscribe</button>
       </form>
     </div>
     
-    <div class="footer-top" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+    <div class="footer-top">
       <div style="flex: 1; min-width: 250px;">
         <div class="footer-brand" style="color: var(--cream);"><span data-wheat-mark="20"></span>Hearth &amp; Wheat</div>
+        <p style="color: #aaa; margin-top: 20px;">A small hearth bakery baking wild-yeast bread, laminated pastry, and hand-built pies — fresh, every morning.</p>
         <div style="margin-top: 20px; display: flex; gap: 10px;">
-           <span style="width: 30px; height: 30px; border-radius: 50%; background: #dcb38a; display: inline-block;"></span>
-           <span style="width: 30px; height: 30px; border-radius: 50%; background: #dcb38a; display: inline-block;"></span>
-           <span style="width: 30px; height: 30px; border-radius: 50%; background: #dcb38a; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
         </div>
       </div>
       <div class="footer-col" style="flex: 1; min-width: 150px;">
-        <h4 style="color: #dcb38a; margin-bottom: 15px;">Navigation</h4>
-        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">
+        <h4 style="color: var(--cream);">Navigate</h4>
+        <ul>
           <li><a href="index.html" style="color: #aaa;">Home</a></li>
           <li><a href="about.html" style="color: #aaa;">About Us</a></li>
           <li><a href="product.html" style="color: #aaa;">Collections</a></li>
@@ -146,28 +142,39 @@
         </ul>
       </div>
       <div class="footer-col" style="flex: 1; min-width: 150px;">
-        <h4 style="color: #dcb38a; margin-bottom: 15px;">Legal</h4>
-        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">
-          <li style="color: #aaa;">Terms & Conditions</li>
+        <h4 style="color: var(--cream);">Legal &amp; Hours</h4>
+        <ul>
+          <li style="color: #aaa;">Terms &amp; Conditions</li>
           <li style="color: #aaa;">Privacy Policy</li>
+          <li style="color: #aaa;">Tue–Sun &middot; 7AM–6PM</li>
         </ul>
       </div>
       <div class="footer-col" style="flex: 1; min-width: 200px;">
-        <h4 style="color: #dcb38a; margin-bottom: 15px;">Contact Us</h4>
-        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; color: #aaa;">
-          <li>📞 +62 812-3456-7890</li>
-          <li>✉️ hello@hearthandwheat.com</li>
-          <li>📍 Jl. Wheatfield No. 12, Cirebon</li>
+        <h4 style="color: var(--cream);">Contact Us</h4>
+        <ul style="color: #aaa;">
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            +62 812-3456-7890
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            hello@hearthandwheat.com
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Jl. Wheatfield No. 12, Cirebon
+          </li>
         </ul>
       </div>
     </div>
     <div class="hr" style="border-color:rgba(255,255,255,0.1); margin-top: 40px; margin-bottom: 20px;"></div>
-    <div class="footer-bottom" style="display: flex; justify-content: space-between; color: #555; font-size: 12px; flex-wrap: wrap; gap: 10px;">
-      <span>All Rights Reserved</span>
-      <span>Designed & Developed by Hearth Team</span>
+    <div class="footer-bottom" style="display: flex; justify-content: space-between; color: #888; font-size: 14px; flex-wrap: wrap; gap: 10px;">
+      <span>&copy; 2026 Hearth &amp; Wheat Bakery.</span>
+      <span>Designed with passion by Hearth team.</span>
     </div>
   </div>
 </footer>
+
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="script.js"></script>

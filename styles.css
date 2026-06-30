@@ -29,6 +29,7 @@ body{
   font-size:16px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x: hidden;
 }
 img{ max-width:100%; display:block; }
 a{ color:inherit; text-decoration:none; }
@@ -517,6 +518,38 @@ section{ padding-top:clamp(56px, 8vw, 100px); padding-bottom:clamp(56px, 8vw, 10
   gap:64px;
   align-items:flex-start;
 }
+
+/* ==========================================================================
+   Immersive Hero Layout (Product Detail)
+   ========================================================================== */
+.hero-product-art {
+  width: 100%;
+  height: 65vh;
+  max-height: 800px;
+  min-height: 400px;
+  background: var(--walnut);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-floating-card {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  border: 1px solid rgba(219,198,171,0.5);
+}
+
+@media (max-width: 900px) {
+  .product-floating-card {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 30px 20px;
+  }
+}
 .detail-art{
   background:linear-gradient(160deg,#ECE0C8,#DFD0AD);
   border:1px solid var(--line);
@@ -632,7 +665,12 @@ footer{
   .footer-top{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width:520px){
-  .footer-top{ grid-template-columns:1fr; }
+  .footer-top{ 
+    grid-template-columns:1fr 1fr; 
+    gap: 40px 20px;
+  }
+  .footer-top > div:first-child { grid-column: span 2; }
+  .footer-top > div:last-child { grid-column: span 2; }
   .detail-grid, .contact-grid{ grid-template-columns:1fr; gap:40px; }
 }
 
@@ -1022,5 +1060,121 @@ footer{
   }
   .editorial-quote-section .wrap {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Responsive Grids (Mobile & Tablet Layout Fixes)
+   ========================================================================== */
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+
+.baker-card {
+  position: absolute; 
+  bottom: -30px; 
+  right: -30px; 
+  background: var(--paper); 
+  color: var(--walnut); 
+  padding: 20px 30px; 
+  border-radius: 20px; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.features-grid {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-grid, .split-grid, .editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .baker-card {
+    right: 20px;
+    bottom: -20px;
+    padding: 15px 20px;
+  }
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .header-top {
+    padding: 10px 20px;
+    line-height: 1.4;
+  }
+  .header-divider {
+    display: none;
+  }
+  .testi-card {
+    right: 50% !important;
+    transform: translateX(50%) !important;
+    width: 100% !important;
+    max-width: 400px;
+  }
+  .testi-card:nth-child(2) {
+    top: 20px !important;
+    transform: translateX(50%) scale(0.95) !important;
+  }
+  .testi-card:nth-child(3) {
+    top: 40px !important;
+    transform: translateX(50%) scale(0.9) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+  .filter-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Fix overlapping cards on mobile (About Page) */
+@media (max-width: 768px) {
+  .value-card-editorial {
+    transform: none !important; /* Disable dynamic rotation on mobile */
+    width: 100%;
+    max-width: 380px;
+  }
+  .value-cards-container {
+    gap: 20px;
   }
 }
