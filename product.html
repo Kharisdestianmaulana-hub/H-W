@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Hearth & Wheat</title>
+<meta name="description" content="Browse breads, pastries, and pies baked fresh daily at Hearth & Wheat.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="wrap">
+      <p>Jl. Wheatfield No. 12, Cirebon &nbsp;|&nbsp; +62 812-3456-7890</p>
+    </div>
+  </div>
+  <nav class="nav wrap split-nav">
+    <div class="nav-menu">
+      <ul class="nav-links nav-left">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      <ul class="nav-links nav-right">
+        <li><a href="product.html" aria-current="page">Product</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="brand">
+      <span data-wheat-mark="28"></span>
+      <span class="brand-text">Hearth &amp; Wheat</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main>
+    <section class="bg-pattern" style="padding: 80px 0 60px; text-align: center; position: relative;">
+    <h1 style="font-size: clamp(36px, 5vw, 48px); font-family: var(--body); font-weight: 700; color: #3b3a36;">Our Collection</h1>
+    <div style="position: absolute; bottom: -20px; left: 0; width: 100%; height: 40px; background: url('data:image/svg+xml;utf8,<svg viewBox=\'0 0 100 20\' xmlns=\'http://www.w3.org/2000/svg\' preserveAspectRatio=\'none\'><path d=\'M0,20 C25,0 75,0 100,20 L0,20 Z\' fill=\'%23FBF6EC\'/></svg>') center bottom/100px 20px repeat-x;"></div>
+  </section>
+
+  <section class="wrap" style="padding: 40px 0 100px;">
+        <div class="filters collection-filters" role="group" aria-label="Filter by category" style="display: flex; justify-content: center; gap: 40px; margin-bottom: 60px;">
+      <button class="filter-tab active" data-filter="all" aria-pressed="true">ALL</button>
+      <button class="filter-tab" data-filter="breads" aria-pressed="false">SAVOURY</button>
+      <button class="filter-tab" data-filter="pastries" aria-pressed="false">SWEETS</button>
+      <button class="filter-tab" data-filter="pies" aria-pressed="false">TRAYS</button>
+    </div>
+
+        <div class="grid-products collection-grid-main" data-product-grid style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+          </div>
+  </section>
+
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--walnut);">
+    <path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>
+</main>
+
+<footer style="background-color: var(--walnut); padding-top: 40px; padding-bottom: 40px;">
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <h3 style="color: var(--cream); font-size: 28px; margin-bottom: 10px;">Subscribe to Newsletter</h3>
+      </div>
+      <form data-newsletter-form style="display: flex; gap: 10px;">
+        <input type="email" placeholder="Email Address..." required aria-label="Email address" style="padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white; width: 300px;">
+        <button type="submit" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px; background: #dcb38a; color: var(--walnut);">Subscribe</button>
+      </form>
+    </div>
+    
+    <div class="footer-top" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+      <div style="flex: 1; min-width: 250px;">
+        <div class="footer-brand" style="color: var(--cream);"><span data-wheat-mark="20"></span>Hearth &amp; Wheat</div>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #dcb38a; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #dcb38a; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #dcb38a; display: inline-block;"></span>
+        </div>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: #dcb38a; margin-bottom: 15px;">Navigation</h4>
+        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">
+          <li><a href="index.html" style="color: #aaa;">Home</a></li>
+          <li><a href="about.html" style="color: #aaa;">About Us</a></li>
+          <li><a href="product.html" style="color: #aaa;">Collections</a></li>
+          <li><a href="contact.html" style="color: #aaa;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: #dcb38a; margin-bottom: 15px;">Legal</h4>
+        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px;">
+          <li style="color: #aaa;">Terms & Conditions</li>
+          <li style="color: #aaa;">Privacy Policy</li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 200px;">
+        <h4 style="color: #dcb38a; margin-bottom: 15px;">Contact Us</h4>
+        <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; color: #aaa;">
+          <li>📞 +62 812-3456-7890</li>
+          <li>✉️ hello@hearthandwheat.com</li>
+          <li>📍 Jl. Wheatfield No. 12, Cirebon</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hr" style="border-color:rgba(255,255,255,0.1); margin-top: 40px; margin-bottom: 20px;"></div>
+    <div class="footer-bottom" style="display: flex; justify-content: space-between; color: #555; font-size: 12px; flex-wrap: wrap; gap: 10px;">
+      <span>All Rights Reserved</span>
+      <span>Designed & Developed by Hearth Team</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
