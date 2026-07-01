@@ -1,0 +1,211 @@
+<?php
+$baseUrl = rtrim($baseUrl ?? '', '/');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact â€” Hearth & Wheat</title>
+<meta name="description" content="Visit, call, or message Hearth & Wheat bakery.">
+<link rel="stylesheet" href="<?= $baseUrl; ?>/public/css/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head><body class="bg-pattern">
+
+<header class="site-header">
+  <nav class="nav wrap split-nav">
+    <div class="nav-menu">
+      <ul class="nav-links nav-left">
+        <li><a href="<?= $baseUrl; ?>/">Home</a></li>
+        <li><a href="<?= $baseUrl; ?>/about">About Us</a></li>
+      </ul>
+      <ul class="nav-links nav-right">
+        <li><a href="<?= $baseUrl; ?>/product">Product</a></li>
+        <li><a href="<?= $baseUrl; ?>/contact" aria-current="page">Contact</a></li>
+      </ul>
+    </div>
+    <a href="<?= $baseUrl; ?>/" class="brand">
+      <span data-wheat-mark="28"></span>
+      <span class="brand-text">Hearth &amp; Wheat</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main>
+    <section class="wrap" style="padding-top: 60px; padding-bottom: 0;">
+    <div class="contact-hero-art">
+      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=80" alt="Bakery Cafe" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+  </section>
+
+    <section class="wrap" style="padding-top: 0; padding-bottom: 100px;">
+    <div class="contact-overlap-panel">
+      <div class="contact-grid-split">
+        
+                <div class="contact-info-col">
+          <span class="eyebrow" style="color: var(--crust);">Get in touch</span>
+          <h1 style="font-size: 42px; color: var(--crust-dark); margin: 10px 0 30px;">Visit our bakery.</h1>
+          
+          <div class="info-list" style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="info-item">
+              <span style="font-size: 14px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--crust);">Address</span>
+              <p style="font-size: 16px; color: var(--walnut); margin-top: 5px;">Jl. Wheatfield No. 12, Cirebon, West Java, Indonesia</p>
+            </div>
+            <div class="info-item">
+              <span style="font-size: 14px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--crust);">Phone / WhatsApp</span>
+              <p style="font-size: 16px; color: var(--walnut); margin-top: 5px;">+62 812-3456-7890</p>
+            </div>
+            <div class="info-item">
+              <span style="font-size: 14px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--crust);">Email</span>
+              <p style="font-size: 16px; color: var(--walnut); margin-top: 5px;">hello@hearthandwheat.id</p>
+            </div>
+          </div>
+          
+          <div style="margin-top: 40px; border-top: 1px solid var(--line); padding-top: 30px;">
+            <h3 style="font-size: 18px; margin-bottom: 15px;">Opening Hours</h3>
+            <table style="width: 100%; font-size: 15px; color: var(--walnut); border-collapse: collapse;">
+              <tr><td style="padding: 5px 0;">Tuesday â€“ Friday</td><td style="text-align: right;">7AM â€“ 6PM</td></tr>
+              <tr><td style="padding: 5px 0;">Saturday â€“ Sunday</td><td style="text-align: right;">7AM â€“ 4PM</td></tr>
+              <tr><td style="padding: 5px 0; color: #888;">Monday</td><td style="text-align: right; color: #888;">Closed</td></tr>
+            </table>
+          </div>
+
+          <div id="map" style="margin-top: 40px; height: 250px; border-radius: 20px; border: 1px solid var(--line); z-index: 1;"></div>
+        </div>
+
+                <div class="contact-form-col">
+          <h3 style="font-size: 24px; color: var(--walnut); margin-bottom: 30px;">Send a message</h3>
+          
+          <div class="form-success" data-form-success style="display:none; background: #e8f5e9; color: #2e7d32; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+            <span>Message sent â€” we'll get back to you within a day.</span>
+          </div>
+
+          <form data-contact-form novalidate>
+            <div class="field contact-field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Your name">
+              <p class="field-error">Please enter your name.</p>
+            </div>
+            <div class="field contact-field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com">
+              <p class="field-error">Please enter a valid email address.</p>
+            </div>
+            <div class="field contact-field">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+62 ...">
+            </div>
+            <div class="field contact-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us what you need..." rows="4"></textarea>
+              <p class="field-error">Please write a short message.</p>
+            </div>
+            <button type="submit" class="btn btn--primary btn--pill" style="margin-top: 20px; width: 100%; border-radius: 30px; padding: 16px; background: #ecd4d4; color: #8c6b6b; border: none; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; transition: background 0.3s;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--walnut);">
+    <path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <h3 style="color: var(--cream); font-size: 28px; margin-bottom: 10px;">Subscribe to Newsletter</h3>
+      </div>
+      <form data-newsletter-form style="display: flex; gap: 10px; width: 100%; max-width: 400px; flex-wrap: wrap;">
+        <input type="email" placeholder="Email Address..." required aria-label="Email address" style="flex: 1; min-width: 200px; padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+        <button type="submit" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px; background: #dcb38a; color: var(--walnut); white-space: nowrap;" onclick="event.preventDefault(); alert('Subscribed!')">Subscribe</button>
+      </form>
+    </div>
+    
+    <div class="footer-top">
+      <div style="flex: 1; min-width: 250px;">
+        <div class="footer-brand" style="color: var(--cream);"><span data-wheat-mark="20"></span>Hearth &amp; Wheat</div>
+        <p style="color: #aaa; margin-top: 20px;">A small hearth bakery baking wild-yeast bread, laminated pastry, and hand-built pies â€” fresh, every morning.</p>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+        </div>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Navigate</h4>
+        <ul>
+          <li><a href="<?= $baseUrl; ?>/" style="color: #aaa;">Home</a></li>
+          <li><a href="<?= $baseUrl; ?>/about" style="color: #aaa;">About Us</a></li>
+          <li><a href="<?= $baseUrl; ?>/product" style="color: #aaa;">Collections</a></li>
+          <li><a href="<?= $baseUrl; ?>/contact" style="color: #aaa;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Legal &amp; Hours</h4>
+        <ul>
+          <li style="color: #aaa;">Terms &amp; Conditions</li>
+          <li style="color: #aaa;">Privacy Policy</li>
+          <li style="color: #aaa;">Tueâ€“Sun &middot; 7AMâ€“6PM</li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 200px;">
+        <h4 style="color: var(--cream);">Contact Us</h4>
+        <ul style="color: #aaa;">
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            +62 812-3456-7890
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            hello@hearthandwheat.com
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Jl. Wheatfield No. 12, Cirebon
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hr" style="border-color:rgba(255,255,255,0.1); margin-top: 40px; margin-bottom: 20px;"></div>
+    <div class="footer-bottom" style="display: flex; justify-content: space-between; color: #888; font-size: 14px; flex-wrap: wrap; gap: 10px;">
+      <span>&copy; 2026 Hearth &amp; Wheat Bakery.</span>
+      <span>Designed with passion by Hearth team.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="<?= $baseUrl; ?>/public/js/script.js"></script>
+<script>
+(function(){
+  var baseUrl = '<?= $baseUrl; ?>';
+  document.addEventListener('click', function(event){
+    var link = event.target.closest('a[href]');
+    if (!link) return;
+
+    var href = link.getAttribute('href');
+    var routes = {
+      'index.html': '/',
+      'about.html': '/about',
+      'product.html': '/product',
+      'contact.html': '/contact',
+      'product-detail.html': '/product-detail'
+    };
+
+    Object.keys(routes).forEach(function(file){
+      if (href === file || href.indexOf(file + '?') === 0) {
+        event.preventDefault();
+        window.location.href = baseUrl + routes[file] + href.slice(file.length);
+      }
+    });
+  });
+})();
+</script></body>
+</html>
+
+

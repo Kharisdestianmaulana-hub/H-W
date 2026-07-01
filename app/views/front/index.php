@@ -1,0 +1,322 @@
+<?php
+$baseUrl = rtrim($baseUrl ?? '', '/');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearth & Wheat â€” Western-style Hearth Bakery</title>
+<meta name="description" content="A small hearth bakery baking wild-yeast bread, laminated pastry, and hand-built pies every day.">
+<link rel="stylesheet" href="<?= $baseUrl; ?>/public/css/styles.css">
+</head>
+<body class="bg-pattern">
+
+<header class="site-header">
+  <nav class="nav wrap split-nav">
+    <div class="nav-menu">
+      <ul class="nav-links nav-left">
+        <li><a href="<?= $baseUrl; ?>/" aria-current="page">Home</a></li>
+        <li><a href="<?= $baseUrl; ?>/about">About Us</a></li>
+      </ul>
+      <ul class="nav-links nav-right">
+        <li><a href="<?= $baseUrl; ?>/product">Product</a></li>
+        <li><a href="<?= $baseUrl; ?>/contact">Contact</a></li>
+      </ul>
+    </div>
+    <a href="<?= $baseUrl; ?>/" class="brand">
+      <span data-wheat-mark="28"></span>
+      <span class="brand-text">Hearth &amp; Wheat</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main>
+    <section class="hero wrap relative">
+    <div class="hero-copy">
+      <h1>The Soul of Bakery, Baked to Perfection.</h1>
+      <p class="lead" style="max-width: 40ch;">Artisanal hearth bread crafted with wild yeast, local wheat, and passion.</p>
+      <div class="hero-actions" style="margin-top: 30px;">
+        <a href="<?= $baseUrl; ?>/product" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 30px;">Bake Menu</a>
+      </div>
+    </div>
+    <div class="hero-art" style="position: relative; display: flex; justify-content: flex-end;">
+      <div class="pattern-bg" style="position:absolute; top: -50px; right: -50px; width: 400px; height: 400px; background-image: url('data:image/svg+xml;utf8,<svg width=\'20\' height=\'20\' xmlns=\'http://www.w3.org/2000/svg\'><circle cx=\'2\' cy=\'2\' r=\'2\' fill=\'%23E2D7C1\'/></svg>'); z-index: -1;"></div>
+      <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=800&q=80" alt="Bread platter" style="width: 100%; max-width: 450px; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 15px solid rgba(255,255,255,0.3);">
+    </div>
+  </section>
+
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--cream);">
+    <path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>
+
+    <section style="background-color: var(--cream); padding: 60px 0;">
+    <div class="wrap split-grid">
+      <div class="legacy-copy">
+        <span class="eyebrow" style="color: var(--crust);">Our History</span>
+        <h2 style="font-size: clamp(32px, 8vw, 42px); color: var(--crust-dark); margin-top: 10px;">A Legacy of<br>Wild Flavors</h2>
+        <p style="color: var(--crust); margin-top: 20px; line-height: 1.6;">For three generations, the Hearth family has curated the secrets of fine bread making. Our cakes in the heart of Cirebon holds a secret ingredientâ€”a story of passion.</p>
+        <p style="color: var(--crust); margin-top: 15px; line-height: 1.6;">We travel the flavor lanes to bring you the bestâ€”every crust and crumb guarantees an authentic bakery experience.</p>
+      </div>
+      <div class="legacy-art" style="position: relative;">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80" alt="Baking" style="width: 80%; border-radius: 30px; object-fit: cover; aspect-ratio: 4/5;">
+        <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bfbb7?w=400&q=80" alt="Ingredients" style="position: absolute; right: 0; bottom: -30px; width: 50%; border-radius: 20px; border: 8px solid var(--cream);">
+      </div>
+    </div>
+  </section>
+
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--paper);">
+    <path d="M0,120 C320,60 420,180 720,120 C1020,60 1120,180 1440,120 L1440,0 L0,0 Z" style="fill:var(--cream);"></path>
+  </svg>
+
+    <section class="wrap" style="padding-top: 80px; padding-bottom: 80px;">
+    <div class="hero-grid">
+      <div class="highlight-art">
+        <div class="highlight-thumbnails">
+           <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80" onclick="changeHero(0, this)" style="width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--crust); object-fit: cover; cursor: pointer;" class="hero-thumb">
+           <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=100&q=80" onclick="changeHero(1, this)" style="width: 60px; height: 60px; border-radius: 50%; opacity: 0.6; object-fit: cover; border: 2px solid transparent; cursor: pointer;" class="hero-thumb">
+           <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=100&q=80" onclick="changeHero(2, this)" style="width: 60px; height: 60px; border-radius: 50%; opacity: 0.6; object-fit: cover; border: 2px solid transparent; cursor: pointer;" class="hero-thumb">
+        </div>
+        <img id="hero-main-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80" alt="Classic Sourdough" style="flex: 1; min-width: 0; width: 100%; border-radius: 20px; object-fit: cover; transition: opacity 0.3s ease;">
+      </div>
+      <div class="highlight-info">
+        <h2 id="hero-main-title" style="font-size: 36px; color: var(--crust-dark);">Classic Sourdough</h2>
+        <p id="hero-main-desc" style="margin-top: 15px; color: var(--crust); line-height: 1.6;">Our flagship loaf is a wild-yeast starter fed daily, fermented cold for 48 hours so the crumb stays open and lightly tangy. These golden loaves are traditionally baked in a wood-fired hearth oven, creating a perfect harmony of crisp crust and soft interior. A true staple for bread lovers.</p>
+        <p id="hero-main-price" style="margin-top: 20px; font-size: 20px; font-weight: 600; color: #d1754f;">IDR 48.000 / loaf</p>
+        <div style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;" class="loaf-options">
+          <button class="active" onclick="selectLoaf(this)">1 Loaf</button>
+          <button onclick="selectLoaf(this)">2 Loaves</button>
+          <button onclick="selectLoaf(this)">3 Loaves</button>
+        </div>
+        <div style="margin-top: 20px; display: flex; align-items: center; gap: 20px;">
+          <div class="qty-selector" style="display: flex; align-items: center; border: 1px solid var(--line); border-radius: 30px; padding: 5px 15px;">
+            <button style="background: none; border: none; font-size: 20px; cursor: pointer; color: var(--crust-dark); padding: 0 10px;" onclick="this.nextElementSibling.innerText = Math.max(1, parseInt(this.nextElementSibling.innerText) - 1)">-</button>
+            <span style="margin: 0 15px; font-weight: 600; color:var(--crust-dark); min-width: 12px; text-align: center;">1</span>
+            <button style="background: none; border: none; font-size: 20px; cursor: pointer; color: var(--crust-dark); padding: 0 10px;" onclick="this.previousElementSibling.innerText = parseInt(this.previousElementSibling.innerText) + 1">+</button>
+          </div>
+        </div>
+        <div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
+          <button class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px;" onclick="alert('Added to cart!')">Add to Cart</button>
+          <button class="btn btn--ghost btn--pill" style="border-radius: 30px; padding: 12px 24px;" onclick="alert('Proceeding to checkout!')">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--cream);">
+    <path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>
+
+    <section style="background-color: var(--cream); padding: 60px 0;">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom: 40px;">
+        <span class="eyebrow" style="color: var(--crust);">Our Patisserie</span>
+        <h2 style="font-size: 32px; color: var(--crust-dark);">Explore Our Top<br>Favorite Patisserie</h2>
+      </div>
+      <div class="carousel-container">
+        <button class="carousel-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" data-featured-carousel></div>
+        </div>
+        <button class="carousel-btn next" aria-label="Next"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+    <section class="wrap" style="padding-top: 100px; padding-bottom: 100px; text-align: center;">
+    <span class="eyebrow" style="color: var(--crust);">Essentials</span>
+    <h2 style="font-size: 36px; color: var(--crust-dark); margin-bottom: 60px;">Sacred Ingredients</h2>
+    <div style="display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;">
+      <div style="max-width: 250px;">
+        <div style="width: 200px; height: 200px; border-radius: 50%; background: var(--walnut); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; position: relative; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1587049352847-4d4b137a44ce?w=300&q=80" style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+        </div>
+        <h4 style="font-size: 20px; color: var(--crust-dark); margin-bottom: 10px;">Wild Honey &amp; Yeast</h4>
+        <p style="color: var(--crust); font-size: 14px; line-height: 1.5;">Our core foundation ranges from pure local wild honey to our 48-hour fermented natural sourdough starter.</p>
+      </div>
+      <div style="max-width: 250px;">
+        <div style="width: 200px; height: 200px; border-radius: 50%; background: var(--walnut); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=300&q=80" style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+        </div>
+        <h4 style="font-size: 20px; color: var(--crust-dark); margin-bottom: 10px;">Stone-Milled Wheat</h4>
+        <p style="color: var(--crust); font-size: 14px; line-height: 1.5;">Grains sourced and ground to preserve the natural oils that give our pastries their extraordinary aroma.</p>
+      </div>
+      <div style="max-width: 250px;">
+        <div style="width: 200px; height: 200px; border-radius: 50%; background: var(--walnut); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=300&q=80" style="width:100%; height:100%; object-fit:cover; opacity:0.8;">
+        </div>
+        <h4 style="font-size: 20px; color: var(--crust-dark); margin-bottom: 10px;">Filtered Hearth Water</h4>
+        <p style="color: var(--crust); font-size: 14px; line-height: 1.5;">Hydration is key. Purified water ensures no chemicals interfere with our wild yeast's natural rise.</p>
+      </div>
+    </div>
+  </section>
+
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--cream);">
+    <path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>
+
+    <section style="background-color: var(--cream); padding: 60px 0;">
+    <div class="wrap">
+      <span class="eyebrow" style="color: var(--crust);">Our Bestsellers</span>
+      <h2 style="font-size: 32px; color: var(--crust-dark); margin-bottom: 40px;">Signature Collections<br><span style="font-size:16px; font-family: var(--body); font-weight:normal; color:var(--crust);">Each piece is hand-finished with love, guaranteed to melt in your mouth.</span></h2>
+      <div class="collection-grid" data-signature-grid>
+              </div>
+    </div>
+  </section>
+
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--paper);">
+    <path d="M0,120 C320,60 420,180 720,120 C1020,60 1120,180 1440,120 L1440,0 L0,0 Z" style="fill:var(--cream);"></path>
+  </svg>
+
+    <section class="wrap" style="padding-top: 100px; padding-bottom: 100px;">
+    <div class="testimonials-grid">
+      <div>
+        <span class="eyebrow" style="color: var(--crust);">Testimonials</span>
+        <h2 style="font-size: clamp(32px, 8vw, 42px); color: var(--crust-dark); margin-bottom: 20px;">What Our<br>Customers Say</h2>
+        <p style="color: var(--crust); margin-bottom: 40px; max-width: 30ch;">Each piece is hand finished with care signature bread for you and your friend.</p>
+        <div style="display: flex; gap: 15px;" class="testi-arrows">
+          <button class="testi-btn prev" style="width: 50px; height: 50px; border-radius: 50%; border:none; background:var(--cream); color:var(--crust-dark); cursor:pointer;"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="margin:auto;"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+          <button class="testi-btn next" style="width: 50px; height: 50px; border-radius: 50%; border:none; background:var(--walnut); color:white; cursor:pointer;"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" style="margin:auto;"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></button>
+        </div>
+      </div>
+      <div class="testimonial-cards" style="position: relative; height: 400px;" data-testi-slider>
+                <div class="testi-card" style="position: absolute; right: 0; top: 0; width: 80%; background: var(--paper); border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--line); z-index: 3; transition: all 0.5s ease;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <div style="display: flex; gap: 15px; align-items: center;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #ccc; overflow: hidden;"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" style="width:100%; height:100%; object-fit:cover;"></div>
+              <div>
+                <h5 style="margin: 0; font-size: 16px;">Jane Doe</h5>
+                <span style="color: #f5a623; font-size: 14px;">â˜…â˜…â˜…â˜…â˜…</span>
+              </div>
+            </div>
+            <span style="font-size: 40px; color: var(--cream); line-height: 1;">&rdquo;</span>
+          </div>
+          <p style="color: var(--crust); font-size: 14px; line-height: 1.6;">"I've never tasted bread quite like this. The sourdough has an incredible depth of flavor. Truly a masterpiece of baking."</p>
+        </div>
+        <div class="testi-card" style="position: absolute; right: 20px; top: 30px; width: 80%; background: var(--cream); border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); z-index: 2; transform: scale(0.95); transition: all 0.5s ease;">
+           <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #ccc; overflow: hidden;"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=80" style="width:100%; height:100%; object-fit:cover;"></div>
+              <div>
+                <h5 style="margin: 0; font-size: 16px;">John Smith</h5>
+                <span style="color: #f5a623; font-size: 14px;">â˜…â˜…â˜…â˜…â˜…</span>
+              </div>
+            </div>
+            <span style="font-size: 40px; color: #fff; line-height: 1; position: absolute; right: 30px; top: 30px;">&rdquo;</span>
+            <p style="color: var(--crust-dark); font-size: 14px; line-height: 1.6;">"The croissants are phenomenal. Flaky, buttery, and absolutely perfect. Best bakery in town hands down."</p>
+        </div>
+        <div class="testi-card" style="position: absolute; right: 40px; top: 60px; width: 80%; background: #e8d1c5; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); z-index: 1; transform: scale(0.9); transition: all 0.5s ease;">
+           <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #ccc; overflow: hidden;"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=80" style="width:100%; height:100%; object-fit:cover;"></div>
+              <div>
+                <h5 style="margin: 0; font-size: 16px;">Emily Chen</h5>
+                <span style="color: #f5a623; font-size: 14px;">â˜…â˜…â˜…â˜…â˜…</span>
+              </div>
+            </div>
+            <span style="font-size: 40px; color: #fff; line-height: 1; position: absolute; right: 30px; top: 30px;">&rdquo;</span>
+            <p style="color: var(--crust-dark); font-size: 14px; line-height: 1.6;">"A delightful experience every weekend. I always look forward to my Sunday morning cinnamon roll."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--walnut);">
+    <path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <h3 style="color: var(--cream); font-size: 28px; margin-bottom: 10px;">Subscribe to Newsletter</h3>
+      </div>
+      <form data-newsletter-form style="display: flex; gap: 10px; width: 100%; max-width: 400px; flex-wrap: wrap;">
+        <input type="email" placeholder="Email Address..." required aria-label="Email address" style="flex: 1; min-width: 200px; padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+        <button type="submit" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px; background: #dcb38a; color: var(--walnut); white-space: nowrap;" onclick="event.preventDefault(); alert('Subscribed!')">Subscribe</button>
+      </form>
+    </div>
+    
+    <div class="footer-top">
+      <div style="flex: 1; min-width: 250px;">
+        <div class="footer-brand" style="color: var(--cream);"><span data-wheat-mark="20"></span>Hearth &amp; Wheat</div>
+        <p style="color: #aaa; margin-top: 20px;">A small hearth bakery baking wild-yeast bread, laminated pastry, and hand-built pies â€” fresh, every morning.</p>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+        </div>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Navigate</h4>
+        <ul>
+          <li><a href="<?= $baseUrl; ?>/" style="color: #aaa;">Home</a></li>
+          <li><a href="<?= $baseUrl; ?>/about" style="color: #aaa;">About Us</a></li>
+          <li><a href="<?= $baseUrl; ?>/product" style="color: #aaa;">Collections</a></li>
+          <li><a href="<?= $baseUrl; ?>/contact" style="color: #aaa;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Legal &amp; Hours</h4>
+        <ul>
+          <li style="color: #aaa;">Terms &amp; Conditions</li>
+          <li style="color: #aaa;">Privacy Policy</li>
+          <li style="color: #aaa;">Tueâ€“Sun &middot; 7AMâ€“6PM</li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 200px;">
+        <h4 style="color: var(--cream);">Contact Us</h4>
+        <ul style="color: #aaa;">
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            +62 812-3456-7890
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            hello@hearthandwheat.com
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Jl. Wheatfield No. 12, Cirebon
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hr" style="border-color:rgba(255,255,255,0.1); margin-top: 40px; margin-bottom: 20px;"></div>
+    <div class="footer-bottom" style="display: flex; justify-content: space-between; color: #888; font-size: 14px; flex-wrap: wrap; gap: 10px;">
+      <span>&copy; 2026 Hearth &amp; Wheat Bakery.</span>
+      <span>Designed with passion by Hearth team.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="<?= $baseUrl; ?>/public/js/script.js"></script>
+<script>
+(function(){
+  var baseUrl = '<?= $baseUrl; ?>';
+  document.addEventListener('click', function(event){
+    var link = event.target.closest('a[href]');
+    if (!link) return;
+
+    var href = link.getAttribute('href');
+    var routes = {
+      'index.html': '/',
+      'about.html': '/about',
+      'product.html': '/product',
+      'contact.html': '/contact',
+      'product-detail.html': '/product-detail'
+    };
+
+    Object.keys(routes).forEach(function(file){
+      if (href === file || href.indexOf(file + '?') === 0) {
+        event.preventDefault();
+        window.location.href = baseUrl + routes[file] + href.slice(file.length);
+      }
+    });
+  });
+})();
+</script></body>
+</html>
+
+

@@ -1,0 +1,245 @@
+<?php
+$baseUrl = rtrim($baseUrl ?? '', '/');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us â€” Hearth & Wheat</title>
+<meta name="description" content="The story behind Hearth & Wheat, a small wood-fired hearth bakery.">
+<link rel="stylesheet" href="<?= $baseUrl; ?>/public/css/styles.css">
+</head>
+<body class="bg-pattern">
+
+<header class="site-header">
+  <nav class="nav wrap split-nav">
+    <div class="nav-menu">
+      <ul class="nav-links nav-left">
+        <li><a href="<?= $baseUrl; ?>/">Home</a></li>
+        <li><a href="<?= $baseUrl; ?>/about" aria-current="page">About Us</a></li>
+      </ul>
+      <ul class="nav-links nav-right">
+        <li><a href="<?= $baseUrl; ?>/product">Product</a></li>
+        <li><a href="<?= $baseUrl; ?>/contact">Contact</a></li>
+      </ul>
+    </div>
+    <a href="<?= $baseUrl; ?>/" class="brand">
+      <span data-wheat-mark="28"></span>
+      <span class="brand-text">Hearth &amp; Wheat</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main>
+    <section class="wrap" style="padding-top: 80px; padding-bottom: 40px; text-align: center;">
+    <span class="eyebrow" style="color: var(--crust);">Our Story</span>
+    <h1 style="margin: 20px auto 40px; font-size: clamp(48px, 8vw, 80px); line-height: 1.1; color: var(--crust-dark); max-width: 14ch;">Built around one wood-fired hearth.</h1>
+    
+    <div style="text-align: left; max-width: 65ch; margin: 0 auto;">
+      <p class="editorial-dropcap" style="font-size: 18px; line-height: 1.8; color: var(--walnut); margin-bottom: 20px;">Hearth &amp; Wheat began as a single oven in a converted barn outside the city â€” built by hand, fed with oak, and never replaced since. Everything we bake still starts there. We believe that good bread requires patience, quality ingredients, and a deep understanding of fermentation.</p>
+    </div>
+  </section>
+
+    <section class="bg-walnut editorial-quote-section" style="padding: 100px 0; margin-top: 40px; position: relative;">
+    <div class="wrap editorial-grid" style="align-items: center;">
+      <div style="position: relative;">
+        <img src="https://images.unsplash.com/photo-1577906096429-f73c2c312435?w=800&q=80" alt="Head Baker" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 20px;">
+        <div class="baker-card">
+          <span class="eyebrow" style="color: var(--crust);">Head Baker</span>
+          <h3 style="font-size: 24px; margin-top: 5px; color: var(--walnut);">Maren Holt</h3>
+        </div>
+      </div>
+      <div>
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="var(--wheat)" style="margin-bottom: 40px; opacity: 0.3;"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        <p style="font-size: clamp(28px, 4vw, 42px); line-height: 1.3; color: var(--cream); font-family: var(--body); font-weight: 700; letter-spacing: -0.02em;">"My grandmother taught me to read a sourdough starter the way you'd read weather. We've kept the same one going since this place opened â€” it knows our hearth better than we do."</p>
+      </div>
+    </div>
+  </section>
+
+    <section class="bg-pattern" style="padding: 120px 0;">
+    <div class="wrap">
+      <div style="text-align: center; margin-bottom: 80px;">
+        <span class="eyebrow" style="color: var(--crust);">What we won't compromise on</span>
+        <h2 style="font-size: 42px; color: var(--crust-dark); margin-top: 10px;">Three rules we bake by</h2>
+      </div>
+      
+      <div class="value-cards-container">
+        <div class="value-card-editorial" style="transform: rotate(-3deg); z-index: 1;">
+          <div class="value-card-img" style="background: url('https://images.unsplash.com/photo-1542326237-94b1c5a538d4?w=600&q=80') center/cover;"></div>
+          <div class="value-card-content">
+            <h4 style="font-size: 24px; color: var(--walnut); margin-bottom: 10px;">Slow fermentation</h4>
+            <p style="color: var(--crust-dark); font-size: 15px; line-height: 1.6;">Every dough gets the time it needs â€” 24 to 48 hours, never rushed with additives.</p>
+          </div>
+        </div>
+        <div class="value-card-editorial" style="transform: translateY(40px) rotate(2deg); z-index: 2;">
+          <div class="value-card-img" style="background: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80') center/cover;"></div>
+          <div class="value-card-content">
+            <h4 style="font-size: 24px; color: var(--walnut); margin-bottom: 10px;">Whole ingredients</h4>
+            <p style="color: var(--crust-dark); font-size: 15px; line-height: 1.6;">Flour, water, salt, wild yeast. If a label needs explaining, it doesn't go in the dough.</p>
+          </div>
+        </div>
+        <div class="value-card-editorial" style="transform: translateY(80px) rotate(-2deg); z-index: 3;">
+          <div class="value-card-img" style="background: url('https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=600&q=80') center/cover;"></div>
+          <div class="value-card-content">
+            <h4 style="font-size: 24px; color: var(--walnut); margin-bottom: 10px;">Baked to sell out</h4>
+            <p style="color: var(--crust-dark); font-size: 15px; line-height: 1.6;">We bake only what we expect to sell each day â€” nothing frozen, nothing held over.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="wrap" style="padding-top: 140px; padding-bottom: 100px;">
+    <div style="text-align: center; margin-bottom: 80px;">
+      <span class="eyebrow" style="color: var(--crust);">How we got here</span>
+      <h2 style="font-size: 36px; color: var(--crust-dark); margin-top: 10px;">A timeline, not a brand story.</h2>
+    </div>
+    
+    <div class="editorial-timeline">
+      <div class="editorial-timeline-item">
+        <div class="year">2019</div>
+        <div class="content">
+          <h4>The Hearth is Built</h4>
+          <p>The hearth oven is built by hand in a converted barn outside Cirebon. First loaves sold from a folding table.</p>
+        </div>
+      </div>
+      <div class="editorial-timeline-item">
+        <div class="year">2020</div>
+        <div class="content">
+          <h4>Wild Yeast</h4>
+          <p>Our sourdough starter â€” still in use today â€” is established from local wild yeast and flour.</p>
+        </div>
+      </div>
+      <div class="editorial-timeline-item">
+        <div class="year">2021</div>
+        <div class="content">
+          <h4>Stone Milling</h4>
+          <p>We add a stone mill on-site, moving away from store-bought flour entirely.</p>
+        </div>
+      </div>
+      <div class="editorial-timeline-item">
+        <div class="year">2022</div>
+        <div class="content">
+          <h4>Pastry Program</h4>
+          <p>Laminated dough, cinnamon rolls, and our first hand-built pies are introduced to the menu.</p>
+        </div>
+      </div>
+      <div class="editorial-timeline-item">
+        <div class="year">2024</div>
+        <div class="content">
+          <h4>First Storefront</h4>
+          <p>We open our first proper storefront, keeping the original hearth oven as the only oven we use.</p>
+        </div>
+      </div>
+      <div class="editorial-timeline-item">
+        <div class="year">2026</div>
+        <div class="content">
+          <h4>Still Six Bakers</h4>
+          <p>Still six bakers, one oven, no commercial yeast â€” and no plans to change that.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    <svg class="wavy-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" style="display:block; width:100%; height:80px; fill:var(--walnut);">
+    <path d="M0,60 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
+  </svg>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <h3 style="color: var(--cream); font-size: 28px; margin-bottom: 10px;">Subscribe to Newsletter</h3>
+      </div>
+      <form data-newsletter-form style="display: flex; gap: 10px; width: 100%; max-width: 400px; flex-wrap: wrap;">
+        <input type="email" placeholder="Email Address..." required aria-label="Email address" style="flex: 1; min-width: 200px; padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+        <button type="submit" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px; background: #dcb38a; color: var(--walnut); white-space: nowrap;" onclick="event.preventDefault(); alert('Subscribed!')">Subscribe</button>
+      </form>
+    </div>
+    
+    <div class="footer-top">
+      <div style="flex: 1; min-width: 250px;">
+        <div class="footer-brand" style="color: var(--cream);"><span data-wheat-mark="20"></span>Hearth &amp; Wheat</div>
+        <p style="color: #aaa; margin-top: 20px;">A small hearth bakery baking wild-yeast bread, laminated pastry, and hand-built pies â€” fresh, every morning.</p>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+        </div>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Navigate</h4>
+        <ul>
+          <li><a href="<?= $baseUrl; ?>/" style="color: #aaa;">Home</a></li>
+          <li><a href="<?= $baseUrl; ?>/about" style="color: #aaa;">About Us</a></li>
+          <li><a href="<?= $baseUrl; ?>/product" style="color: #aaa;">Collections</a></li>
+          <li><a href="<?= $baseUrl; ?>/contact" style="color: #aaa;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Legal &amp; Hours</h4>
+        <ul>
+          <li style="color: #aaa;">Terms &amp; Conditions</li>
+          <li style="color: #aaa;">Privacy Policy</li>
+          <li style="color: #aaa;">Tueâ€“Sun &middot; 7AMâ€“6PM</li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 200px;">
+        <h4 style="color: var(--cream);">Contact Us</h4>
+        <ul style="color: #aaa;">
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            +62 812-3456-7890
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            hello@hearthandwheat.com
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Jl. Wheatfield No. 12, Cirebon
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hr" style="border-color:rgba(255,255,255,0.1); margin-top: 40px; margin-bottom: 20px;"></div>
+    <div class="footer-bottom" style="display: flex; justify-content: space-between; color: #888; font-size: 14px; flex-wrap: wrap; gap: 10px;">
+      <span>&copy; 2026 Hearth &amp; Wheat Bakery.</span>
+      <span>Designed with passion by Hearth team.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="<?= $baseUrl; ?>/public/js/script.js"></script>
+<script>
+(function(){
+  var baseUrl = '<?= $baseUrl; ?>';
+  document.addEventListener('click', function(event){
+    var link = event.target.closest('a[href]');
+    if (!link) return;
+
+    var href = link.getAttribute('href');
+    var routes = {
+      'index.html': '/',
+      'about.html': '/about',
+      'product.html': '/product',
+      'contact.html': '/contact',
+      'product-detail.html': '/product-detail'
+    };
+
+    Object.keys(routes).forEach(function(file){
+      if (href === file || href.indexOf(file + '?') === 0) {
+        event.preventDefault();
+        window.location.href = baseUrl + routes[file] + href.slice(file.length);
+      }
+    });
+  });
+})();
+</script></body>
+</html>
+
+

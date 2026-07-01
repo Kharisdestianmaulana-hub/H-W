@@ -1,0 +1,192 @@
+<?php
+$baseUrl = rtrim($baseUrl ?? '', '/');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Detail â€” Hearth & Wheat</title>
+<link rel="stylesheet" href="<?= $baseUrl; ?>/public/css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap split-nav">
+    <div class="nav-menu">
+      <ul class="nav-links nav-left">
+        <li><a href="<?= $baseUrl; ?>/">Home</a></li>
+        <li><a href="<?= $baseUrl; ?>/about">About Us</a></li>
+      </ul>
+      <ul class="nav-links nav-right">
+        <li><a href="<?= $baseUrl; ?>/product" aria-current="page">Product</a></li>
+        <li><a href="<?= $baseUrl; ?>/contact">Contact</a></li>
+      </ul>
+    </div>
+    <a href="<?= $baseUrl; ?>/" class="brand">
+      <span data-wheat-mark="28"></span>
+      <span class="brand-text">Hearth &amp; Wheat</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="wrap" style="padding-top:24px; padding-bottom:24px;">
+    <p style="font-size:13px;color:var(--walnut-soft);">
+      <a href="<?= $baseUrl; ?>/product" style="text-decoration:underline;">Product</a> / <span data-breadcrumb-name></span>
+    </p>
+  </section>
+
+  <section data-detail-root>
+    <div class="hero-product-art" data-detail-icon>
+      <!-- script.js will inject the image here -->
+    </div>
+    <div class="wrap" style="position: relative; margin-top: -100px; z-index: 10; margin-bottom: 80px;">
+      <span class="stamp stamp--sm" data-detail-tag style="position:absolute; top:-20px; right: 40px; z-index: 20;"></span>
+      <div class="product-floating-card">
+        <div class="card-left">
+          <span class="eyebrow" data-detail-cat></span>
+          <h1 data-detail-name style="font-size: clamp(36px, 5vw, 48px); line-height: 1.1; margin-top: 10px; color: var(--crust-dark);"></h1>
+          <p class="detail-price" data-detail-price style="font-size: 24px; color: var(--walnut); margin-top: 20px; font-weight: 600;"></p>
+          <div class="hr" style="margin: 30px 0;"></div>
+          <p class="detail-desc" data-detail-desc style="font-size: 16px; line-height: 1.8; color: var(--crust); max-width: 600px;"></p>
+        </div>
+        <div class="card-right">
+          <div class="detail-meta" style="margin-top: 0;">
+            <div><span>Weight / size</span><span data-detail-weight style="font-family:var(--mono);"></span></div>
+            <div><span>Bake schedule</span><span data-detail-bake style="font-family:var(--mono);"></span></div>
+            <div><span>Contains</span><span data-detail-allergen style="font-family:var(--mono);"></span></div>
+          </div>
+          
+          <div class="qty-row" style="margin-top: 30px;">
+            <div class="qty-control" style="width: 100%; max-width: none; justify-content: space-between; padding: 15px 30px; border-radius: 12px;">
+              <button type="button" data-qty-minus aria-label="Decrease quantity" style="font-size: 24px;">&minus;</button>
+              <span data-qty style="font-size: 20px; font-weight: 600;">1</span>
+              <button type="button" data-qty-plus aria-label="Increase quantity" style="font-size: 24px;">+</button>
+            </div>
+          </div>
+          
+          <div class="detail-actions-full" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+            <button type="button" class="btn btn--wa" data-wa-order style="width: 100%; border-radius: 12px; padding: 18px; font-size: 16px; font-weight: 600; text-align: center;">Order via WhatsApp</button>
+            <a href="<?= $baseUrl; ?>/product" class="btn btn--ghost" style="width: 100%; border-radius: 12px; padding: 18px; font-size: 16px; font-weight: 600; text-align: center;">Back to Menu</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap related">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">You might also like</span>
+          <h2 style="font-size:28px;">More from this category</h2>
+        </div>
+      </div>
+      <div class="grid-products" data-related-grid></div>
+    </div>
+  </section>
+
+  <div class="wrap" id="detail-empty">
+    <h2>Product not found</h2>
+    <p style="color:var(--walnut-soft);margin-bottom:24px;">That item isn't on the menu â€” it may have sold out for the day.</p>
+    <a href="<?= $baseUrl; ?>/product" class="btn btn--primary">Back to Menu</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <h3 style="color: var(--cream); font-size: 28px; margin-bottom: 10px;">Subscribe to Newsletter</h3>
+      </div>
+      <form data-newsletter-form style="display: flex; gap: 10px; width: 100%; max-width: 400px; flex-wrap: wrap;">
+        <input type="email" placeholder="Email Address..." required aria-label="Email address" style="flex: 1; min-width: 200px; padding: 12px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: white;">
+        <button type="submit" class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px; background: #dcb38a; color: var(--walnut); white-space: nowrap;" onclick="event.preventDefault(); alert('Subscribed!')">Subscribe</button>
+      </form>
+    </div>
+    
+    <div class="footer-top">
+      <div style="flex: 1; min-width: 250px;">
+        <div class="footer-brand" style="color: var(--cream);"><span data-wheat-mark="20"></span>Hearth &amp; Wheat</div>
+        <p style="color: #aaa; margin-top: 20px;">A small hearth bakery baking wild-yeast bread, laminated pastry, and hand-built pies â€” fresh, every morning.</p>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+           <span style="width: 30px; height: 30px; border-radius: 50%; background: #444; display: inline-block;"></span>
+        </div>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Navigate</h4>
+        <ul>
+          <li><a href="<?= $baseUrl; ?>/" style="color: #aaa;">Home</a></li>
+          <li><a href="<?= $baseUrl; ?>/about" style="color: #aaa;">About Us</a></li>
+          <li><a href="<?= $baseUrl; ?>/product" style="color: #aaa;">Collections</a></li>
+          <li><a href="<?= $baseUrl; ?>/contact" style="color: #aaa;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 150px;">
+        <h4 style="color: var(--cream);">Legal &amp; Hours</h4>
+        <ul>
+          <li style="color: #aaa;">Terms &amp; Conditions</li>
+          <li style="color: #aaa;">Privacy Policy</li>
+          <li style="color: #aaa;">Tueâ€“Sun &middot; 7AMâ€“6PM</li>
+        </ul>
+      </div>
+      <div class="footer-col" style="flex: 1; min-width: 200px;">
+        <h4 style="color: var(--cream);">Contact Us</h4>
+        <ul style="color: #aaa;">
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            +62 812-3456-7890
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            hello@hearthandwheat.com
+          </li>
+          <li style="display: flex; gap: 8px; align-items: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Jl. Wheatfield No. 12, Cirebon
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hr" style="border-color:rgba(255,255,255,0.1); margin-top: 40px; margin-bottom: 20px;"></div>
+    <div class="footer-bottom" style="display: flex; justify-content: space-between; color: #888; font-size: 14px; flex-wrap: wrap; gap: 10px;">
+      <span>&copy; 2026 Hearth &amp; Wheat Bakery.</span>
+      <span>Designed with passion by Hearth team.</span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="<?= $baseUrl; ?>/public/js/script.js"></script>
+<script>
+(function(){
+  var baseUrl = '<?= $baseUrl; ?>';
+  document.addEventListener('click', function(event){
+    var link = event.target.closest('a[href]');
+    if (!link) return;
+
+    var href = link.getAttribute('href');
+    var routes = {
+      'index.html': '/',
+      'about.html': '/about',
+      'product.html': '/product',
+      'contact.html': '/contact',
+      'product-detail.html': '/product-detail'
+    };
+
+    Object.keys(routes).forEach(function(file){
+      if (href === file || href.indexOf(file + '?') === 0) {
+        event.preventDefault();
+        window.location.href = baseUrl + routes[file] + href.slice(file.length);
+      }
+    });
+  });
+})();
+</script></body>
+</html>
+
+
