@@ -196,7 +196,22 @@ h1,h2,h3,h4{
 }
 .nav-links a:hover::after,
 .nav-links a[aria-current="page"]::after{ transform:scaleX(1); }
-.nav-links a[aria-current="page"]{ color:var(--crust-dark); }
+.nav-links a:hover,
+.nav-links a[aria-current="page"]{
+  color:var(--crust-dark);
+}
+
+.nav-auth-btn {
+  color: #d1754f !important;
+  font-weight: 600;
+  border: 1px solid #d1754f;
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.nav-auth-btn:hover {
+  background: rgba(209,117,79,0.1);
+}
 
 .nav-toggle{
   display:none;
@@ -269,6 +284,60 @@ h1,h2,h3,h4{
   }
   
   .nav-toggle{ display:block; }
+}
+
+.marquee span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Sticky Checkout Bar */
+.checkout-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--crust-dark);
+  color: var(--cream);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+}
+.checkout-bar.active {
+  transform: translateY(0);
+}
+.checkout-bar-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.checkout-bar-total {
+  font-family: var(--display);
+  font-size: 24px;
+}
+.checkout-bar-items {
+  font-size: 14px;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+@media (max-width: 600px) {
+  .checkout-bar {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .checkout-bar-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .checkout-bar button {
+    width: 100%;
+  }
 }
 
 .btn{

@@ -592,3 +592,34 @@ function initMap() {
     .bindPopup('<b>Hearth & Wheat Bakery</b><br>Jl. Wheatfield No. 12, Cirebon')
     .openPopup();
 }
+
+// Global Cart State for Sticky Checkout Bar Prototype
+var cart = { items: 0, total: 0 };
+
+function initCheckoutBar() {
+  if (document.getElementById('global-checkout-bar')) return;
+  var bar = document.createElement('div');
+  bar.id = 'global-checkout-bar';
+  bar.className = 'checkout-bar';
+  bar.innerHTML = `
+    <div class="checkout-bar-info">
+      <div>
+        <div class="checkout-bar-total" id="checkout-total">IDR 0</div>
+        <div class="checkout-bar-items" id="checkout-items">0 Items in Cart</div>
+      </div>
+    </div>
+    <button class="btn btn--primary" style="border-radius: 30px; padding: 12px 30px;" onclick="window.location.href='checkout.html'">Checkout</button>
+  `;
+  document.body.appendChild(bar);
+}
+
+window.addToCart = function(price, qty = 1) {
+  initCheckoutBar();
+  cart.items += qty;
+  cart.total += (price * qty);
+  
+  document.getElementById('checkout-items').innerText = cart.items + (cart.items > 1 ? ' Items in Cart' : ' Item in Cart');
+  document.getElementById('checkout-total').innerText = 'IDR ' + cart.total.toLocaleString('id-ID');
+  
+  document.getElementById('global-checkout-bar').classList.add('active');
+};

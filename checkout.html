@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - Hearth & Wheat</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body {
+    background-color: var(--paper);
+  }
+  .checkout-wrap {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: start;
+  }
+  
+  .checkout-summary {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  }
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .summary-item-info {
+    display: flex;
+    gap: 15px;
+  }
+  .summary-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .summary-totals {
+    margin-top: 30px;
+  }
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--walnut);
+  }
+  .summary-line.total {
+    font-size: 24px;
+    font-family: var(--display);
+    color: var(--crust-dark);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--crust);
+  }
+
+  .checkout-form {
+    padding: 20px 0;
+  }
+  .checkout-section-title {
+    font-family: var(--display);
+    font-size: 28px;
+    color: var(--crust-dark);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .form-group label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--walnut);
+    font-weight: 600;
+  }
+  .form-group input, .form-group select {
+    padding: 15px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    background: transparent;
+  }
+  .form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--crust);
+  }
+  
+  .payment-method {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .payment-method:hover {
+    border-color: var(--crust);
+    background: rgba(209,117,79,0.05);
+  }
+  .payment-method input[type="radio"] {
+    transform: scale(1.3);
+    accent-color: var(--crust);
+  }
+
+  @media (max-width: 900px) {
+    .checkout-wrap {
+      grid-template-columns: 1fr;
+    }
+    .checkout-summary {
+      order: -1;
+    }
+    .form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  /* Payment Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .payment-modal {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  }
+  .modal-overlay.active .payment-modal {
+    transform: translateY(0);
+  }
+  .qr-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 30px auto;
+    display: inline-block;
+    border: 1px solid var(--line);
+  }
+  .qr-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .countdown {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--crust);
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" style="background: var(--cream); border-bottom: 1px solid var(--line);">
+  <nav class="nav wrap split-nav">
+    <div class="nav-menu">
+      <ul class="nav-links nav-left">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product.html">Product</a></li>
+      </ul>
+    </div>
+    <a href="index.html" class="brand">
+      <span data-wheat-mark="24"></span>
+      <span class="brand-text">Checkout</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+  </nav>
+</header>
+
+<main class="wrap checkout-wrap">
+  <!-- Right Column: Form -->
+  <div class="checkout-form">
+    
+    <h2 class="checkout-section-title">Informasi Pengiriman</h2>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nama Depan</label>
+        <input type="text" placeholder="John" required>
+      </div>
+      <div class="form-group">
+        <label>Nama Belakang</label>
+        <input type="text" placeholder="Doe" required>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nomor Telepon</label>
+        <input type="tel" placeholder="0812-3456-7890" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="hello@example.com" required>
+      </div>
+    </div>
+    
+    <div class="form-group" style="margin-bottom: 20px;">
+      <label>Alamat Lengkap</label>
+      <input type="text" placeholder="Jl. Contoh No. 123, RT/RW 01/02" required>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label>Kota / Kabupaten</label>
+        <select>
+          <option>Pilih Kota</option>
+          <option>Kota Cirebon</option>
+          <option>Kab. Cirebon</option>
+          <option>Jakarta Selatan</option>
+          <option>Bandung</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Kode Pos</label>
+        <input type="text" placeholder="45123" required>
+      </div>
+    </div>
+
+    <h2 class="checkout-section-title" style="margin-top: 50px;">Metode Pembayaran</h2>
+    
+    <label class="payment-method">
+      <input type="radio" name="payment" checked>
+      <div>
+        <div style="font-weight: 600; color: var(--crust-dark);">E-Wallet (GoPay / OVO / Dana / QRIS)</div>
+        <div style="font-size: 13px; color: var(--walnut-soft); margin-top: 4px;">Scan QR Code pada halaman selanjutnya. Verifikasi instan.</div>
+      </div>
+    </label>
+
+    <button type="button" class="btn btn--primary" style="width: 100%; border-radius: 10px; padding: 18px; font-size: 18px; margin-top: 30px;" onclick="showPaymentModal()">Selesaikan Pesanan</button>
+
+  </div>
+
+  <!-- Left Column: Order Summary (Displayed on Right on Desktop) -->
+  <div class="checkout-summary">
+    <h3 style="font-family: var(--display); font-size: 24px; color: var(--crust-dark); margin-bottom: 30px;">Ringkasan Pesanan</h3>
+    
+    <div class="summary-item">
+      <div class="summary-item-info">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80" alt="Classic Sourdough">
+        <div>
+          <div style="font-weight: 600; color: var(--crust-dark);">Classic Sourdough</div>
+          <div style="font-size: 13px; color: var(--walnut-soft); margin-top: 5px;">Qty: 2</div>
+        </div>
+      </div>
+      <div style="font-weight: 600; color: var(--crust);">Rp 96.000</div>
+    </div>
+    
+    <div class="summary-item">
+      <div class="summary-item-info">
+        <img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=100&q=80" alt="Milk Bread">
+        <div>
+          <div style="font-weight: 600; color: var(--crust-dark);">Artisan Milk Bread</div>
+          <div style="font-size: 13px; color: var(--walnut-soft); margin-top: 5px;">Qty: 1</div>
+        </div>
+      </div>
+      <div style="font-weight: 600; color: var(--crust);">Rp 42.000</div>
+    </div>
+
+    <div class="summary-totals">
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span style="font-weight: 600;">Rp 138.000</span>
+      </div>
+      <div class="summary-line">
+        <span>Ongkos Kirim (Flat)</span>
+        <span style="font-weight: 600;">Rp 15.000</span>
+      </div>
+      <div class="summary-line total">
+        <span>Total Bayar</span>
+        <span>Rp 153.000</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Payment Modal -->
+<div class="modal-overlay" id="payment-modal">
+  <div class="payment-modal">
+    <h3 style="font-family: var(--display); font-size: 28px; color: var(--crust-dark); margin-bottom: 10px;">Scan untuk Bayar</h3>
+    <p style="color: var(--walnut-soft); font-size: 15px;">Silakan scan QRIS di bawah ini menggunakan aplikasi E-Wallet pilihan Anda (GoPay, OVO, Dana, ShopeePay).</p>
+    
+    <div class="qr-container">
+      <!-- Dummy QR Image -->
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=HearthAndWheatPayment153000" alt="QRIS Code">
+    </div>
+    
+    <div style="font-size: 14px; color: var(--walnut); margin-bottom: 5px;">Selesaikan pembayaran dalam</div>
+    <div class="countdown" id="payment-countdown">15:00</div>
+    
+    <button type="button" class="btn btn--primary" style="width: 100%; border-radius: 10px; padding: 15px; font-size: 16px; margin-bottom: 15px;" onclick="simulatePaymentSuccess()">Saya Sudah Bayar</button>
+    <button type="button" class="btn btn--ghost" style="width: 100%; border-radius: 10px; padding: 15px; font-size: 16px;" onclick="closePaymentModal()">Batalkan Pesanan</button>
+  </div>
+</div>
+
+<script>
+  let timerInterval;
+
+  function showPaymentModal() {
+    document.getElementById('payment-modal').classList.add('active');
+    startCountdown(15 * 60); // 15 minutes
+  }
+
+  function closePaymentModal() {
+    document.getElementById('payment-modal').classList.remove('active');
+    clearInterval(timerInterval);
+  }
+
+  function startCountdown(duration) {
+    let timer = duration;
+    const display = document.getElementById('payment-countdown');
+    clearInterval(timerInterval);
+    
+    timerInterval = setInterval(function () {
+      let minutes = parseInt(timer / 60, 10);
+      let seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+
+      if (--timer < 0) {
+        clearInterval(timerInterval);
+        alert('Waktu pembayaran habis!');
+        closePaymentModal();
+      }
+    }, 1000);
+  }
+
+  function simulatePaymentSuccess() {
+    clearInterval(timerInterval);
+    alert('Pembayaran Berhasil! Pesanan Anda segera diproses.');
+    window.location.href = 'index.html';
+  }
+
+  // Simple script to render wheat icon in header
+  document.addEventListener('DOMContentLoaded', function(){
+    const wheatSVG = (size) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-9"/><path d="M12 13V4"/><path d="M12 13a3 3 0 0 1-3-3 3 3 0 0 1-3 3 3 3 0 0 1 3 3"/><path d="M12 13a3 3 0 0 0 3-3 3 3 0 0 0 3 3 3 3 0 0 0-3 3"/></svg>`;
+    document.querySelectorAll('[data-wheat-mark]').forEach(el => {
+      el.innerHTML = wheatSVG(el.dataset.wheatMark || 22);
+      el.style.color = 'var(--crust)';
+    });
+  });
+</script>
+
+</body>
+</html>

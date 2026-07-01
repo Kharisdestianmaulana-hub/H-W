@@ -19,6 +19,7 @@
       <ul class="nav-links nav-right">
         <li><a href="product.html">Product</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="nav-auth-btn">Sign In</a></li>
       </ul>
     </div>
     <a href="index.html" class="brand">
@@ -89,12 +90,12 @@
         <div style="margin-top: 20px; display: flex; align-items: center; gap: 20px;">
           <div class="qty-selector" style="display: flex; align-items: center; border: 1px solid var(--line); border-radius: 30px; padding: 5px 15px;">
             <button style="background: none; border: none; font-size: 20px; cursor: pointer; color: var(--crust-dark); padding: 0 10px;" onclick="this.nextElementSibling.innerText = Math.max(1, parseInt(this.nextElementSibling.innerText) - 1)">-</button>
-            <span style="margin: 0 15px; font-weight: 600; color:var(--crust-dark); min-width: 12px; text-align: center;">1</span>
+            <span id="hero-qty" style="margin: 0 15px; font-weight: 600; color:var(--crust-dark); min-width: 12px; text-align: center;">1</span>
             <button style="background: none; border: none; font-size: 20px; cursor: pointer; color: var(--crust-dark); padding: 0 10px;" onclick="this.previousElementSibling.innerText = parseInt(this.previousElementSibling.innerText) + 1">+</button>
           </div>
         </div>
         <div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
-          <button class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px;" onclick="alert('Added to cart!')">Add to Cart</button>
+          <button class="btn btn--primary btn--pill" style="border-radius: 30px; padding: 12px 24px;" onclick="window.addToCart(48000, parseInt(document.getElementById('hero-qty').innerText))">Add to Cart</button>
           <button class="btn btn--ghost btn--pill" style="border-radius: 30px; padding: 12px 24px;" onclick="alert('Proceeding to checkout!')">Buy Now</button>
         </div>
       </div>

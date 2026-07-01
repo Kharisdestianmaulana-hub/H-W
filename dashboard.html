@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - Hearth & Wheat</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body {
+    background-color: var(--cream);
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+  }
+  .sidebar {
+    width: 250px;
+    background-color: var(--paper);
+    border-right: 1px solid var(--line);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-brand {
+    font-family: var(--display);
+    font-size: 24px;
+    color: var(--crust-dark);
+    margin-bottom: 40px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sidebar-link {
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: var(--walnut);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-size: 16px;
+  }
+  .sidebar-link:hover {
+    background-color: rgba(209,117,79,0.1);
+    color: var(--crust);
+  }
+  .sidebar-link.active {
+    background-color: var(--crust);
+    color: white;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+  }
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .dashboard-header h1 {
+    font-size: 32px;
+  }
+  .user-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--paper);
+    padding: 8px 15px;
+    border-radius: 30px;
+    border: 1px solid var(--line);
+  }
+  
+  .data-section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .data-section.active {
+    display: block;
+  }
+
+  .table-container {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  }
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  th, td {
+    padding: 15px;
+    border-bottom: 1px solid var(--line);
+  }
+  th {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--walnut-soft);
+    letter-spacing: 0.1em;
+  }
+  td {
+    font-size: 14px;
+    color: var(--walnut);
+  }
+  .badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge.active { background: #e0f2e9; color: #2d7a5d; }
+  .badge.inactive { background: #ffe5e5; color: #c92a2a; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Admin Modals */
+  .admin-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .admin-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .admin-modal {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    padding: 30px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+  .admin-modal-overlay.active .admin-modal {
+    transform: translateY(0);
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--line);
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--walnut);
+    margin-bottom: 8px;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: inherit;
+  }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <a href="index.html" class="sidebar-brand">Hearth & Wheat</a>
+  <nav class="sidebar-nav">
+    <button class="sidebar-link active" onclick="showSection('products')">Produk</button>
+    <button class="sidebar-link" onclick="showSection('categories')">Kategori Produk</button>
+    <button class="sidebar-link" onclick="showSection('users')">Users</button>
+    <button class="sidebar-link" onclick="showSection('testimonials')">Testimoni</button>
+    <button class="sidebar-link" style="margin-top: auto; color: #c92a2a;" onclick="window.location.href='index.html'">Sign Out</button>
+  </nav>
+</aside>
+
+<main class="main-content">
+  <div class="dashboard-header">
+    <h1 id="page-title">Manajemen Produk</h1>
+    <div class="user-badge">
+      <span style="width: 30px; height: 30px; background: var(--crust); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">A</span>
+      <span style="font-size: 14px; font-weight: 600;">Admin</span>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <section id="products" class="data-section active">
+    <div class="table-container">
+      <div class="table-header">
+        <h2 style="font-size: 20px;">Daftar Produk</h2>
+        <button class="btn btn--primary" style="padding: 8px 16px; border-radius: 6px; font-size: 14px;" onclick="showAdminModal('modal-add-product')">+ Tambah Produk</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Gambar</th>
+            <th>Nama Produk</th>
+            <th>Kategori</th>
+            <th>Harga</th>
+            <th>Jadwal Panggang</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PRD-001</td>
+            <td><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=100&q=80" style="width:40px; height:40px; border-radius:8px; object-fit:cover;"></td>
+            <td>Classic Sourdough</td>
+            <td>Breads</td>
+            <td>Rp 48.000</td>
+            <td>Daily, 6AM</td>
+            <td><span class="badge active">Tersedia</span></td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="editProduk(this)">Edit</button></td>
+          </tr>
+          <tr>
+            <td>PRD-002</td>
+            <td><img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=100&q=80" style="width:40px; height:40px; border-radius:8px; object-fit:cover;"></td>
+            <td>Artisan Milk Bread</td>
+            <td>Breads</td>
+            <td>Rp 42.000</td>
+            <td>Daily, 7AM</td>
+            <td><span class="badge active">Tersedia</span></td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="editProduk(this)">Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section id="categories" class="data-section">
+    <div class="table-container">
+      <div class="table-header">
+        <h2 style="font-size: 20px;">Kategori Produk</h2>
+        <button class="btn btn--primary" style="padding: 8px 16px; border-radius: 6px; font-size: 14px;" onclick="showAdminModal('modal-add-category')">+ Tambah Kategori</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama Kategori</th>
+            <th>Slug</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CAT-001</td>
+            <td>Breads</td>
+            <td>breads</td>
+            <td>Berbagai macam roti ragi alami dan ragi komersial.</td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="editKategori(this)">Edit</button></td>
+          </tr>
+          <tr>
+            <td>CAT-002</td>
+            <td>Pastries</td>
+            <td>pastries</td>
+            <td>Kue kering, croissant, dan hidangan manis panggang.</td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="editKategori(this)">Edit</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Users Section -->
+  <section id="users" class="data-section">
+    <div class="table-container">
+      <div class="table-header">
+        <h2 style="font-size: 20px;">Daftar Pengguna</h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID User</th>
+            <th>Nama Lengkap</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Terdaftar</th>
+            <th>Status</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>USR-109</td>
+            <td>Admin Utama</td>
+            <td>admin@hearthwheat.com</td>
+            <td>Admin</td>
+            <td>12 Aug 2025</td>
+            <td><span class="badge active">Aktif</span></td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="showAdminModal('modal-detail-user')">Detail</button></td>
+          </tr>
+          <tr>
+            <td>USR-110</td>
+            <td>Budi Santoso</td>
+            <td>budi@example.com</td>
+            <td>Customer</td>
+            <td>01 Nov 2025</td>
+            <td><span class="badge active">Aktif</span></td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="showAdminModal('modal-detail-user')">Detail</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="data-section">
+    <div class="table-container">
+      <div class="table-header">
+        <h2 style="font-size: 20px;">Ulasan Pelanggan</h2>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Pelanggan</th>
+            <th>Rating</th>
+            <th>Isi Testimoni</th>
+            <th>Status Tampil</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TST-055</td>
+            <td>Sarah Jenkins</td>
+            <td>⭐⭐⭐⭐⭐</td>
+            <td>"The sourdough crust is incredible, totally recommend!"</td>
+            <td><span class="badge active">Ditampilkan</span></td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="toggleTestimoni(this)">Sembunyikan</button></td>
+          </tr>
+          <tr>
+            <td>TST-056</td>
+            <td>Mike R.</td>
+            <td>⭐⭐⭐⭐</td>
+            <td>"Love the croissants, slightly pricey but worth it."</td>
+            <td><span class="badge inactive">Disembunyikan</span></td>
+            <td><button style="background:none; border:none; color:var(--crust); text-decoration:underline; font-size:13px; cursor:pointer; padding:0;" onclick="toggleTestimoni(this)">Tampilkan</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Modal Tambah Produk -->
+  <div class="admin-modal-overlay" id="modal-add-product">
+    <div class="admin-modal">
+      <div class="modal-header">
+        <h2 style="font-size: 24px; color: var(--crust-dark); margin: 0;">Tambah Produk</h2>
+        <button style="background:none; border:none; font-size:24px; cursor:pointer;" onclick="closeAdminModal('modal-add-product')">✕</button>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('Produk berhasil ditambahkan (simulasi)!'); closeAdminModal('modal-add-product');">
+        <div class="form-group">
+          <label>Kategori Produk (id_kategori)</label>
+          <select required>
+            <option value="">Pilih Kategori</option>
+            <option value="1">Breads</option>
+            <option value="2">Pastries</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nama Produk</label>
+          <input type="text" required placeholder="Contoh: Sourdough Loaf">
+        </div>
+        <div class="form-group">
+          <label>Slug URL</label>
+          <input type="text" required placeholder="contoh-sourdough-loaf">
+        </div>
+        <div class="form-group">
+          <label>Harga (Rp)</label>
+          <input type="number" required placeholder="45000">
+        </div>
+        <div class="form-group">
+          <label>Deskripsi Lengkap</label>
+          <textarea rows="4" required placeholder="Deskripsi produk..."></textarea>
+        </div>
+        <div style="display:flex; gap:15px;">
+          <div class="form-group" style="flex:1;">
+            <label>Berat Bersih</label>
+            <input type="text" placeholder="Misal: 500g">
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label>Jadwal Panggang</label>
+            <input type="text" placeholder="Misal: Daily, 6AM">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>URL Gambar</label>
+          <input type="url" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select>
+            <option value="active">Tersedia</option>
+            <option value="inactive">Habis</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn--ghost" style="padding: 10px 20px; border-radius: 6px;" onclick="closeAdminModal('modal-add-product')">Batal</button>
+          <button type="submit" class="btn btn--primary" style="padding: 10px 20px; border-radius: 6px;">Simpan Produk</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Tambah Kategori -->
+  <div class="admin-modal-overlay" id="modal-add-category">
+    <div class="admin-modal">
+      <div class="modal-header">
+        <h2 style="font-size: 24px; color: var(--crust-dark); margin: 0;">Tambah Kategori</h2>
+        <button style="background:none; border:none; font-size:24px; cursor:pointer;" onclick="closeAdminModal('modal-add-category')">✕</button>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('Kategori berhasil ditambahkan (simulasi)!'); closeAdminModal('modal-add-category');">
+        <div class="form-group">
+          <label>Nama Kategori</label>
+          <input type="text" required placeholder="Contoh: Cookies">
+        </div>
+        <div class="form-group">
+          <label>Slug URL</label>
+          <input type="text" required placeholder="contoh-cookies">
+        </div>
+        <div class="form-group">
+          <label>Keterangan</label>
+          <textarea rows="3" placeholder="Deskripsi singkat kategori ini..."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn--ghost" style="padding: 10px 20px; border-radius: 6px;" onclick="closeAdminModal('modal-add-category')">Batal</button>
+          <button type="submit" class="btn btn--primary" style="padding: 10px 20px; border-radius: 6px;">Simpan Kategori</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Detail User -->
+  <div class="admin-modal-overlay" id="modal-detail-user">
+    <div class="admin-modal" style="max-width: 450px;">
+      <div class="modal-header">
+        <h2 style="font-size: 24px; color: var(--crust-dark); margin: 0;">Detail Pengguna</h2>
+        <button style="background:none; border:none; font-size:24px; cursor:pointer;" onclick="closeAdminModal('modal-detail-user')">✕</button>
+      </div>
+      <div style="font-size: 15px; color: var(--walnut); line-height: 1.6;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--line); padding-bottom: 10px;">
+          <strong>ID User:</strong> <span>USR-109</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--line); padding-bottom: 10px;">
+          <strong>Nama Lengkap:</strong> <span>Admin Utama</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--line); padding-bottom: 10px;">
+          <strong>Email:</strong> <span>admin@hearthwheat.com</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--line); padding-bottom: 10px;">
+          <strong>Role:</strong> <span>Admin</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed var(--line); padding-bottom: 10px;">
+          <strong>Tanggal Terdaftar:</strong> <span>12 Aug 2025</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <strong>Status:</strong> <span class="badge active">Aktif</span>
+        </div>
+      </div>
+      <div class="modal-actions" style="margin-top: 20px;">
+        <button type="button" class="btn btn--primary" style="padding: 10px 20px; border-radius: 6px; width: 100%;" onclick="closeAdminModal('modal-detail-user')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function showAdminModal(id) {
+    document.getElementById(id).classList.add('active');
+  }
+  function closeAdminModal(id) {
+    document.getElementById(id).classList.remove('active');
+  }
+
+  function editProduk(btn) {
+    // Get product name from the row
+    let row = btn.closest('tr');
+    let nama = row.cells[2].innerText;
+    
+    // Change modal title and show
+    let modal = document.getElementById('modal-add-product');
+    modal.querySelector('h2').innerText = 'Edit Produk: ' + nama;
+    showAdminModal('modal-add-product');
+  }
+
+  function editKategori(btn) {
+    let row = btn.closest('tr');
+    let nama = row.cells[1].innerText;
+    
+    let modal = document.getElementById('modal-add-category');
+    modal.querySelector('h2').innerText = 'Edit Kategori: ' + nama;
+    showAdminModal('modal-add-category');
+  }
+
+  function toggleTestimoni(btn) {
+    let row = btn.closest('tr');
+    let badge = row.querySelector('.badge');
+    
+    if (btn.innerText === 'Sembunyikan') {
+      badge.className = 'badge inactive';
+      badge.innerText = 'Disembunyikan';
+      btn.innerText = 'Tampilkan';
+    } else {
+      badge.className = 'badge active';
+      badge.innerText = 'Ditampilkan';
+      btn.innerText = 'Sembunyikan';
+    }
+  }
+
+  function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.data-section').forEach(sec => sec.classList.remove('active'));
+    // Remove active class from buttons
+    document.querySelectorAll('.sidebar-link').forEach(btn => btn.classList.remove('active'));
+    
+    // Show target section
+    document.getElementById(sectionId).classList.add('active');
+    // Add active class to clicked button
+    event.currentTarget.classList.add('active');
+
+    // Update Page Title
+    const titles = {
+      'products': 'Manajemen Produk',
+      'categories': 'Kategori Produk',
+      'users': 'Manajemen Pengguna',
+      'testimonials': 'Ulasan Pelanggan'
+    };
+    document.getElementById('page-title').innerText = titles[sectionId];
+  }
+</script>
+
+</body>
+</html>
